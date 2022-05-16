@@ -7,7 +7,7 @@ async function get(req, res, next) {
         // console.log(weather);
         res.json(await items.getMultiple(req));
     } catch (err) {
-        console.error(`Error while getting programming languages`, err.message);
+        console.error(`Error while getting items`, err.message);
         next(err);
     }
   }
@@ -25,7 +25,7 @@ async function get(req, res, next) {
     try {
       res.json(await items.update(req.params.id, req.body));
     } catch (err) {
-      console.error(`Error while updating programming language`, err.message);
+      console.error(`Error while updating items`, err.message);
       next(err);
     }
   }
@@ -34,7 +34,7 @@ async function get(req, res, next) {
     try {
       res.json(await items.remove(req.body));
     } catch (err) {
-      console.error(`Error while deleting programming language`, err.message);
+      console.error(`Error while deleting items`, err.message);
       next(err);
     }
   }
