@@ -33,7 +33,7 @@ async function create(item){
   return {message};
 }
 
-async function update(id, item){
+async function update(id, item){  // gotta do this
   const result = await db.query(
     `UPDATE Items 
     SET name=?, released_year=?, githut_rank=?, 
@@ -46,10 +46,10 @@ async function update(id, item){
     ]
   );
 
-  let message = 'Error in updating programming language';
+  let message = 'Error in updating items';
 
   if (result.affectedRows) {
-    message = 'Programming language updated successfully';
+    message = 'items updated successfully';
   }
 
   return {message};
@@ -57,7 +57,7 @@ async function update(id, item){
 
 async function remove(item){
   const result = await pool.query(
-    `DELETE FROM Items WHERE ItemName=$1`, 
+    `UPDATE Items SET Active = 'f'  WHERE ItemName=$1`, 
     [item.name]
   );
 

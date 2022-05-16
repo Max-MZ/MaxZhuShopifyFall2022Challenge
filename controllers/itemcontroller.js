@@ -1,5 +1,8 @@
 import { pool } from '../api/postgres.js'
 import * as items from '../services/itemService.js'
+// import * as archive from '../controllers/deletedcontroller.js'
+import * as archive from '../services/deletedService.js'
+
 import * as warehouse from '../services/warehouseService.js'
 async function get(req, res, next) {
     try {
@@ -32,7 +35,9 @@ async function get(req, res, next) {
   
   async function remove(req, res, next) {
     try {
+      await archive.create(req.body);
       res.json(await items.remove(req.body));
+      
     } catch (err) {
       console.error(`Error while deleting items`, err.message);
       next(err);

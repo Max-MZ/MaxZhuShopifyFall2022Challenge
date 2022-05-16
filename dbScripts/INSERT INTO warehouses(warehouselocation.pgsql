@@ -21,4 +21,6 @@
 --     Reason text
 -- );
 
-select * from warehouses;
+-- select * from warehouses;
+
+INSERT INTO Archived  (Item, Reason) VALUES ('chair', 'I eated') ON CONFLICT (Archived.Item) DO UPDATE SET Reason='ueue' WHERE Item='chair';
