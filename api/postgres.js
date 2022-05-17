@@ -1,13 +1,9 @@
 import pg from "pg";
 const { Pool } = pg;
 
+
 export const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'backend',
-    password: 'shopifypostgres',
-    dialect: 'postgres',
-    port: 5432
+    connectionString : 'postgres://akjdwqbv:dFE0q1wupIlUNaAQUKWcqw_JihcaIyfB@drona.db.elephantsql.com/akjdwqbv'
 });
 
 export const connectDatabase = async() =>{

@@ -18,8 +18,6 @@ async function updateWeather(page = 1){
         const currTemp = await getCurrentWeather(currCity)
 
         const tempString = `${currTemp.temp} degrees Celcius, ${currTemp.desc}`;
-        
-        console.log(tempString);
 
         await update(currCity, tempString);
  
