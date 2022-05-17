@@ -1,6 +1,3 @@
-// const db = require('./db.service');
-// const helper = require('../utils/helper.util');
-// const config = require('../configs/general.config');
 
 import { pool } from '../api/postgres.js'
 
@@ -16,7 +13,6 @@ async function getMultiple(page = 1){
 }
 
 async function create(item){
-    console.log(item.name, item.warehouse)
   const result = await pool.query(
     `INSERT INTO Items  (ItemName, WarehouseLocation, Active) VALUES ($1, $2, $3) ON CONFLICT (ItemName) DO UPDATE SET WarehouseLocation = $2, Active='t'`, 
     [

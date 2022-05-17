@@ -4,10 +4,10 @@ import * as items from '../services/itemService.js'
 async function get(req, res, next) {
     try {
         console.log("undeleting! ")
-        console.log(req)
+        console.log(req.params.item)
         res.json(await items.setActive(req.params.item));
     } catch (err) {
-        console.error(`Error while getting items`, err.message);
+        console.error(`Error while undeleting`, err.message);
         next(err);
     }
   }
