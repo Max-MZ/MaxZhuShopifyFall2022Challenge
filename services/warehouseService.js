@@ -18,10 +18,6 @@ async function updateWeather(page = 1){
         await update(currCity, tempString);
  
     }
-
-    
-
-
     return currentWeather
   }
 
