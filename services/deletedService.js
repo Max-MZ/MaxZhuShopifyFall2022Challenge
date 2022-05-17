@@ -1,6 +1,3 @@
-// const db = require('./db.service');
-// const helper = require('../utils/helper.util');
-// const config = require('../configs/general.config');
 
 import { pool } from '../api/postgres.js'
 

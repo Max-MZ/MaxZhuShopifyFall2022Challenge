@@ -31,13 +31,5 @@ async function get(req, res, next) {
     }
   }
   
-//   async function remove(req, res, next) {
-//     try {
-//       res.json(await items.remove(req.body));
-//     } catch (err) {
-//       console.error(`Error while deleting items`, err.message);
-//       next(err);
-//     }
-//   }
   
   export { get, create, update}

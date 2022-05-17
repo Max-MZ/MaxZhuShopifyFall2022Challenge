@@ -3,7 +3,6 @@ import express from 'express';
 const router = express.Router();
 
 import * as itemController  from '../controllers/itemcontroller.js'
-import * as warehouseController  from '../controllers/warehousecontroller.js'
 
 /* GET items. Requires update to weather as well */
 router.get('/', itemController.get);

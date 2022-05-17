@@ -1,6 +1,5 @@
 import { pool } from '../api/postgres.js'
 import * as items from '../services/itemService.js'
-// import * as archive from '../controllers/deletedcontroller.js'
 import * as archive from '../services/deletedService.js'
 
 import * as warehouse from '../services/warehouseService.js'
