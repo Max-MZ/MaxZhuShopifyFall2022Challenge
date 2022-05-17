@@ -1,9 +1,11 @@
 import { pool } from '../api/postgres.js'
 import * as archive from '../services/deletedService.js'
+import * as items from '../services/itemService.js'
 async function get(req, res, next) {
     try {
-
-        res.json(await items.getMultiple(req));
+        console.log("undeleting! ")
+        console.log(req)
+        res.json(await items.setActive(req.params.item));
     } catch (err) {
         console.error(`Error while getting items`, err.message);
         next(err);

@@ -53,7 +53,7 @@ async function create(item){
 
   let message = 'Error in creating item';
 
-  if (result.affectedRows) {
+  if (result.rowCount) {
     message = 'Item created successfully';
   }
 
@@ -73,7 +73,7 @@ async function update(city, weather){
 
   let message = 'Error in updating item';
 
-  if (result.affectedRows) {
+  if (result.rowCount) {
     message = 'item updated successfully';
   }
 
@@ -88,7 +88,7 @@ async function remove(item){
 
   let message = 'Error in deleting item';
 
-  if (result.affectedRows) {
+  if (result.rowCount) {
     message = 'item deleted successfully';
   }
 

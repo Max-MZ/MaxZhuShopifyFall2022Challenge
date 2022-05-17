@@ -18,38 +18,18 @@ async function getMultiple(page = 1){
 async function create(item){
     console.log(item.name, item.warehouse)
   const result = await pool.query(
-    `INSERT INTO Items  (ItemName, WarehouseLocation, Active) VALUES ($1, $2, $3)`, 
+    `INSERT INTO Items  (ItemName, WarehouseLocation, Active) VALUES ($1, $2, $3) ON CONFLICT (ItemName) DO UPDATE SET WarehouseLocation = $2, Active='t'`, 
     [
       item.name, item.warehouse, 'true'
     ]
   );
 
+  console.log(result);
+
   let message = 'Error in creating item';
 
-  if (result.affectedRows) {
+  if (result.rowCount) {
     message = 'Item created successfully';
-  }
-
-  return {message};
-}
-
-async function update(id, item){  // gotta do this
-  const result = await db.query(
-    `UPDATE Items 
-    SET name=?, released_year=?, githut_rank=?, 
-    pypl_rank=?, tiobe_rank=? 
-    WHERE id=?`, 
-    [
-      item.name, item.released_year,
-      item.githut_rank, item.pypl_rank,
-      item.tiobe_rank, id
-    ]
-  );
-
-  let message = 'Error in updating items';
-
-  if (result.affectedRows) {
-    message = 'items updated successfully';
   }
 
   return {message};
@@ -62,12 +42,27 @@ async function remove(item){
   );
 
   let message = 'Error in deleting item';
-
-  if (result.affectedRows) {
+  console.log(result);
+  if (result.rowCount) {
     message = 'item deleted successfully';
   }
 
   return {message};
 }
 
-export {getMultiple, create, update, remove}
+
+async function setActive(item){
+  const result = await pool.query(
+    `UPDATE Items SET Active = 't'  WHERE ItemName=$1`, 
+    [item]
+  );
+
+  let message = 'Error in undeleting item';
+
+  if (result.rowCount) {
+    message = 'item undeleted successfully';
+  }
+
+  return {message};
+}
+export {getMultiple, create, remove, setActive}

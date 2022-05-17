@@ -16,8 +16,6 @@ async function getMultiple(page = 1){
 }
 
 async function create(deletedItem){
-    console.log("AHHHH")
-    console.log(deletedItem.name, deletedItem.reason)
   const result = await pool.query(
     `INSERT INTO Archived  (Item, Reason) VALUES ($1, $2) ON CONFLICT (Item) DO UPDATE SET Reason=$2 WHERE Archived.Item=$1`, 
     [
@@ -27,34 +25,13 @@ async function create(deletedItem){
 
   let message = 'Error in creating item';
 
-  if (result.affectedRows) {
+  if (result.rowCount) {
     message = 'Item created successfully';
   }
 
   return {message};
 }
 
-async function update(id, item){  // gotta do this
-  const result = await db.query(
-    `UPDATE Items 
-    SET name=?, released_year=?, githut_rank=?, 
-    pypl_rank=?, tiobe_rank=? 
-    WHERE id=?`, 
-    [
-      item.name, item.released_year,
-      item.githut_rank, item.pypl_rank,
-      item.tiobe_rank, id
-    ]
-  );
-
-  let message = 'Error in updating items';
-
-  if (result.affectedRows) {
-    message = 'items updated successfully';
-  }
-
-  return {message};
-}
 
 async function remove(item){
   const result = await pool.query(
@@ -63,12 +40,12 @@ async function remove(item){
   );
 
   let message = 'Error in deleting item';
-
-  if (result.affectedRows) {
+    
+  if (result.rowCount) {
     message = 'item deleted successfully';
   }
 
   return {message};
 }
 
-export {getMultiple, create, update, remove}
+export {getMultiple, create, remove}
